@@ -19,6 +19,6 @@ bot.start((ctx)=>{
 //This function will trigger, when user shares chat with bot
 //for now it sends chat_id back to user
 bot.on("chat_shared", ctx=>{
-    ctx.reply(ctx.update.message.chat_shared.chat_id);
+    ctx.reply(ctx.update.message.chat_shared.chat_id)
 })
 bot.launch();
