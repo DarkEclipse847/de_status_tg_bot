@@ -29,8 +29,16 @@ async def update_ids_csv():
         dialogs_array.append(dialog.id)
     return save_ids.write_csv([dialogs_array])
 
+
+
 async def main():
-    await client.send_message("me", "Test?")
+    last_channel_id = (await client.get_messages(int(config.private_group_id), 1))[0]
+    '''last_channel_id = int(last_channel_id)'''
+    if save_ids.check_csv(int(last_channel_id.text)) == True:
+        async with client:
+            async for  message in client.iter_messages(int(last_channel_id.text), 1):
+                print(last_channel_id.text)
+
     '''Use this to update dialogs.csv'''
     '''dialogs.csv is needed to avoid floodwait errors'''
     '''await update_ids_csv()'''
